@@ -1,9 +1,17 @@
-module.exports = {
-  purge: [],
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-   darkMode: 'class', // or 'media' or 'class'
-   theme: {
-    extend: {
+<template>
+  <div>
+    <div v-for="(color, name) in colors" :key="name">
+      <div v-for="(shade, shadeValue) in color" :key="shadeValue" @click="copyToClipboard(getClassName(name, shadeValue))" class="color-row" :style="{ backgroundColor: shade }">
+        <span class="color-name">{{ getDisplayName(name, shadeValue) }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
       colors: {
         'paynes-gray': {
           DEFAULT: '#496169',
@@ -78,10 +86,45 @@ module.exports = {
           900: '#060d10',
         }
       }
+    };
+  },
+  methods: {
+    copyToClipboard(className) {
+      const el = document.createElement('textarea');
+      el.value = className;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
     },
-   },
-   variants: {
-     extend: {},
-   },
-   plugins: [],
- }
+    getDisplayName(name, shadeValue) {
+      if (shadeValue === 'DEFAULT') {
+        return name;
+      } else {
+        return `${name}-${shadeValue}`;
+      }
+    },
+    getClassName(name, shadeValue) {
+      if (shadeValue === 'DEFAULT') {
+        return name;
+      } else {
+        return `${name}-${shadeValue}`;
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.color-row {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.color-name {
+  color: white; /* Você pode personalizar a cor do texto conforme necessário */
+}
+</style>

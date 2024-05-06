@@ -4,11 +4,23 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('./components/Home.vue')
+    component: () => import('./components/Home.vue'),
+    name: 'Home' // Adicionando um nome para a rota Home
   },
   {
-    path: '/sobre',
-    component: () => import('./components/Sobre.vue')
+    path: '/localStorage',
+    component: () => import('./components/localStorage.vue'),
+    name: 'LocalStorage' // Adicionando um nome para a rota LocalStorage
+  },
+  {
+    path: '/cores',
+    component: () => import('./components/Cores.vue'),
+    name: 'Cores' // Adicionando um nome para a rota Cores
+  },
+  {
+    path: '/swiper',
+    component: () => import('./components/Swiper.vue'),
+    name: 'Swiper' // Adicionando um nome para a rota Swiper
   }
 ]
 
