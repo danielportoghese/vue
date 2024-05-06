@@ -31,7 +31,7 @@
   // Import Swiper styles
   import 'swiper/css';
 
-  import '../style.css';
+  import '../style.scss';
 
   export default {
     components: {

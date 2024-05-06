@@ -8,6 +8,11 @@ const routes: RouteRecordRaw[] = [
     name: 'Home' // Adicionando um nome para a rota Home
   },
   {
+    path: '/login',
+    component: () => import('./components/Login.vue'),
+    name: 'Login' // Adicionando um nome para a rota Home
+  },
+  {
     path: '/localStorage',
     component: () => import('./components/localStorage.vue'),
     name: 'LocalStorage' // Adicionando um nome para a rota LocalStorage
