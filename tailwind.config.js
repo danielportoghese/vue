@@ -1,8 +1,8 @@
 module.exports = {
   purge: [],
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-   darkMode: 'class', // or 'media' or 'class'
-   theme: {
+  darkMode: 'class', // or 'media' or 'class'
+  theme: {
     extend: {
       colors: {
         'paynes-gray': {
@@ -27,7 +27,7 @@ module.exports = {
           600: '#0a3740',
           700: '#072a30',
           800: '#051c20',
-          900: '#020e10'
+          900: '#020e10',
         },
         'dawn-green': {
           DEFAULT: '#0e3135',
@@ -51,7 +51,7 @@ module.exports = {
           600: '#0a1b19',
           700: '#071413',
           800: '#050e0c',
-          900: '#020706'
+          900: '#020706',
         },
         'rich-black': {
           DEFAULT: '#0d202e',
@@ -63,9 +63,9 @@ module.exports = {
           600: '#0b1b26',
           700: '#08141d',
           800: '#050d13',
-          900: '#03070a'
+          900: '#03070a',
         },
-        'charcoal': {
+        charcoal: {
           DEFAULT: '#1c404e',
           100: '#c4dfea',
           200: '#89bfd4',
@@ -76,12 +76,12 @@ module.exports = {
           700: '#11272f',
           800: '#0b1a1f',
           900: '#060d10',
-        }
-      }
+        },
+      },
     },
-   },
-   variants: {
-     extend: {},
-   },
-   plugins: [],
- }
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}

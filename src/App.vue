@@ -8,30 +8,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import Header from './components/Header.vue'
-import { useRoute } from 'vue-router'
+  import { defineComponent, ref, watch } from 'vue'
+  import { useRoute, RouteRecordName } from 'vue-router'
+  import Header from './components/Header.vue'
 
-export default defineComponent({
-  components: {
-    Header
-  },
-  setup() {
-    const route = useRoute()
-    const currentPageClass = ref('')
+  export default defineComponent({
+    components: {
+      Header,
+    },
+    setup() {
+      const route = useRoute()
+      const currentPageClass = ref<string | null>('')
 
-    const updatePageClass = () => {
-      currentPageClass.value = route.name || ''
-    }
+      const updatePageClass = () => {
+        const name: RouteRecordName | null | undefined = route.name
+        currentPageClass.value = name && typeof name === 'string' ? name : null
+      }
 
-    updatePageClass() // Atualiza a classe quando o componente é montado
+      updatePageClass() // Atualiza a classe quando o componente é montado
 
-    return { currentPageClass, updatePageClass }
-  },
-  watch: {
-    '$route'(to, from) {
-      this.updatePageClass()
-    }
-  }
-})
+      watch(
+        () => route.name,
+        () => {
+          updatePageClass()
+        },
+      )
+
+      return { currentPageClass }
+    },
+  })
 </script>

@@ -1,7 +1,13 @@
 <template>
   <div>
     <div v-for="(color, name) in colors" :key="name">
-      <div v-for="(shade, shadeValue) in color" :key="shadeValue" @click="copyToClipboard(getClassName(name, shadeValue))" class="color-row" :style="{ backgroundColor: shade }">
+      <div
+        v-for="(shade, shadeValue) in color"
+        :key="shadeValue"
+        @click="copyToClipboard(getClassName(name, shadeValue))"
+        class="color-row"
+        :style="{ backgroundColor: shade }"
+      >
         <span class="color-name">{{ getDisplayName(name, shadeValue) }}</span>
       </div>
     </div>
@@ -9,122 +15,122 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      colors: {
-        'paynes-gray': {
-          DEFAULT: '#496169',
-          100: '#d8e1e4',
-          200: '#b1c3c9',
-          300: '#8aa5ad',
-          400: '#648590',
-          500: '#496169',
-          600: '#3b4e54',
-          700: '#2c3a3f',
-          800: '#1d272a',
-          900: '#0f1315',
+  export default {
+    data() {
+      return {
+        colors: {
+          'paynes-gray': {
+            DEFAULT: '#496169',
+            100: '#d8e1e4',
+            200: '#b1c3c9',
+            300: '#8aa5ad',
+            400: '#648590',
+            500: '#496169',
+            600: '#3b4e54',
+            700: '#2c3a3f',
+            800: '#1d272a',
+            900: '#0f1315',
+          },
+          'midnight-green': {
+            DEFAULT: '#0c444e',
+            100: '#b7ebf4',
+            200: '#6ed6e8',
+            300: '#26c2dd',
+            400: '#188598',
+            500: '#0c444e',
+            600: '#0a3740',
+            700: '#072a30',
+            800: '#051c20',
+            900: '#020e10',
+          },
+          'dawn-green': {
+            DEFAULT: '#0e3135',
+            100: '#b9e7ec',
+            200: '#73cfda',
+            300: '#33b2c1',
+            400: '#21717a',
+            500: '#0e3135',
+            600: '#0b272a',
+            700: '#081d1f',
+            800: '#061315',
+            900: '#030a0a',
+          },
+          'dark-green': {
+            DEFAULT: '#0c221f',
+            100: '#bae7e1',
+            200: '#76cfc3',
+            300: '#3cab9d',
+            400: '#24675e',
+            500: '#0c221f',
+            600: '#0a1b19',
+            700: '#071413',
+            800: '#050e0c',
+            900: '#020706',
+          },
+          'rich-black': {
+            DEFAULT: '#0d202e',
+            100: '#b9d6eb',
+            200: '#73aed8',
+            300: '#3584bc',
+            400: '#215376',
+            500: '#0d202e',
+            600: '#0b1b26',
+            700: '#08141d',
+            800: '#050d13',
+            900: '#03070a',
+          },
+          charcoal: {
+            DEFAULT: '#1c404e',
+            100: '#c4dfea',
+            200: '#89bfd4',
+            300: '#4d9fbf',
+            400: '#32718a',
+            500: '#1c404e',
+            600: '#17343f',
+            700: '#11272f',
+            800: '#0b1a1f',
+            900: '#060d10',
+          },
         },
-        'midnight-green': {
-          DEFAULT: '#0c444e',
-          100: '#b7ebf4',
-          200: '#6ed6e8',
-          300: '#26c2dd',
-          400: '#188598',
-          500: '#0c444e',
-          600: '#0a3740',
-          700: '#072a30',
-          800: '#051c20',
-          900: '#020e10'
-        },
-        'dawn-green': {
-          DEFAULT: '#0e3135',
-          100: '#b9e7ec',
-          200: '#73cfda',
-          300: '#33b2c1',
-          400: '#21717a',
-          500: '#0e3135',
-          600: '#0b272a',
-          700: '#081d1f',
-          800: '#061315',
-          900: '#030a0a',
-        },
-        'dark-green': {
-          DEFAULT: '#0c221f',
-          100: '#bae7e1',
-          200: '#76cfc3',
-          300: '#3cab9d',
-          400: '#24675e',
-          500: '#0c221f',
-          600: '#0a1b19',
-          700: '#071413',
-          800: '#050e0c',
-          900: '#020706'
-        },
-        'rich-black': {
-          DEFAULT: '#0d202e',
-          100: '#b9d6eb',
-          200: '#73aed8',
-          300: '#3584bc',
-          400: '#215376',
-          500: '#0d202e',
-          600: '#0b1b26',
-          700: '#08141d',
-          800: '#050d13',
-          900: '#03070a'
-        },
-        'charcoal': {
-          DEFAULT: '#1c404e',
-          100: '#c4dfea',
-          200: '#89bfd4',
-          300: '#4d9fbf',
-          400: '#32718a',
-          500: '#1c404e',
-          600: '#17343f',
-          700: '#11272f',
-          800: '#0b1a1f',
-          900: '#060d10',
+      }
+    },
+    methods: {
+      copyToClipboard(className) {
+        const el = document.createElement('textarea')
+        el.value = className
+        document.body.appendChild(el)
+        el.select()
+        document.execCommand('copy')
+        document.body.removeChild(el)
+      },
+      getDisplayName(name, shadeValue) {
+        if (shadeValue === 'DEFAULT') {
+          return name
+        } else {
+          return `${name}-${shadeValue}`
         }
-      }
-    };
-  },
-  methods: {
-    copyToClipboard(className) {
-      const el = document.createElement('textarea');
-      el.value = className;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
+      },
+      getClassName(name, shadeValue) {
+        if (shadeValue === 'DEFAULT') {
+          return name
+        } else {
+          return `${name}-${shadeValue}`
+        }
+      },
     },
-    getDisplayName(name, shadeValue) {
-      if (shadeValue === 'DEFAULT') {
-        return name;
-      } else {
-        return `${name}-${shadeValue}`;
-      }
-    },
-    getClassName(name, shadeValue) {
-      if (shadeValue === 'DEFAULT') {
-        return name;
-      } else {
-        return `${name}-${shadeValue}`;
-      }
-    }
   }
-};
 </script>
 
 <style scoped>
-.color-row {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
+  .color-row {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 
-.color-name {
-  color: white; /* Você pode personalizar a cor do texto conforme necessário */
-}
+  .color-name {
+    color: white; /* Você pode personalizar a cor do texto conforme necessário */
+  }
 </style>
