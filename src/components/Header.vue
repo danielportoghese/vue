@@ -8,13 +8,13 @@
 
     </div>
   </header>
-  <nav>
-    <ul class="menu flex flex-col absolute top-0 right-0 w-full h-full bg-gray-800 text-white space-y-4 p-8" :class="{ 'hidden':!isMenuOpen }">
-      <li class="primary-item">Bem-vindo. Entre ou cadastre-se</li>
-      <li>Home</li>
-      <li>Sobre Nós</li>
-      <li>Serviços</li>
-      <li>Contato</li>
+
+  <nav class="menu absolute top-0 right-0 w-full h-full bg-gray-800 text-white space-y-4 p-8 transition-transform duration-300 transform " :class="{ 'translate-x-full':!isMenuOpen },{ 'translate-x-0': isMenuOpen }">
+    <ul class="flex flex-col">
+      <li class="primary-item"><a href="/login">Bem-vindo. Entre ou cadastre-se</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/sobre">Sobre Nós</a></li>
+
     </ul>
   </nav>
 </template>
